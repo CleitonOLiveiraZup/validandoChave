@@ -13,6 +13,6 @@ export class AppService {
     ) { }
 
     consultarCNPJ(cnpj:any){
-      return this.http.jsonp<Pessoa>(`http://www.receitaws.com.br/v1/cnpj/${cnpj}`, 'callback')
+      return this.http.jsonp<Pessoa>(`https://www.receitaws.com.br/v1/cnpj/${cnpj}`, 'callback')
     }
 }
