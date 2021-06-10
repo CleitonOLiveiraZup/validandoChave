@@ -1,0 +1,12 @@
+<label>Chave de Acesso: {{str}}</label><br><br>
+<button (click)="ok()">Validar</button><br><br>
+
+<ng-container *ngIf="pessoa">
+  <p>Data: {{chave.mes}}/{{chave.ano}} </p>
+  <p *ngIf="show">CNPJ: {{chave.cnpj|cnpj}}</p>
+  <p>Cidade: {{ pessoa.municipio }} - {{ pessoa.uf }}</p>
+  <p>Nome: {{pessoa.nome}}</p>
+
+  <p>Endereço: {{ pessoa.logradouro }} - {{ pessoa.numero }} - {{ pessoa.bairro }}</p>
+
+</ng-container>
