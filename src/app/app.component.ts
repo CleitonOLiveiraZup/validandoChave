@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
-import { Pipe, PipeTransform } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, Output, ViewChild } from '@angular/core';
+import { BarcodeFormat } from '@zxing/library';
 import { AppService } from './app.service'
 import { Pessoa } from './pessoa';
+
+enum CameraStatuses {
+  disabled = 'disabled',
+  enabled = 'enabled',
+  taken = 'taken'
+}
 
 @Component({
   selector: 'app-root',
@@ -12,25 +18,52 @@ import { Pessoa } from './pessoa';
 
 
 export class AppComponent {
+  results: Array<any> = [];
+  allowedFormats = [
+    BarcodeFormat.AZTEC,
+    BarcodeFormat.CODABAR,
+    BarcodeFormat.CODE_39,
+    BarcodeFormat.CODE_93,
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX,
+    BarcodeFormat.EAN_8,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.ITF,
+    BarcodeFormat.MAXICODE,
+    BarcodeFormat.PDF_417,
+    BarcodeFormat.QR_CODE,
+    BarcodeFormat.RSS_14,
+    BarcodeFormat.RSS_EXPANDED,
+    BarcodeFormat.UPC_A,
+    BarcodeFormat.UPC_E,
+    BarcodeFormat.UPC_EAN_EXTENSION
+  ]
+
+  scanSuccessHandler(event: any) {
+    console.log(event);
+    this.results.unshift(event);
+    
+  }
   
 
   show = false;
+  
 
   title = 'testa';
   pessoa!: Pessoa
  
 
-  str = "31210564195886000159-65-001-000.028.258-100.421.3506"; 
+  
 
   constructor(
     private AppService: AppService
   ) { }
 
 chave:any = {
-  uf : this.str.substring(0,2),
-  ano : this.str.substring(2,4),
-  mes : this.str.substring(4,6),
-  cnpj : this.str.substring(6,20),
+  uf :  this.results.toString().substring(0,2),
+  ano : this.results.toString().substring(2,4),
+  mes : this.results.toString().substring(4,6),
+  cnpj : this.results.toString().substring(6,20),
 } 
 
 ok(){

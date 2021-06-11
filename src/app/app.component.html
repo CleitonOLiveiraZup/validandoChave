@@ -1,5 +1,11 @@
-<label>Chave de Acesso: {{str}}</label><br><br>
 <button (click)="ok()">Validar</button><br><br>
+
+<div class="container" style="width: 75%;  max-width: 600px; margin: 30px auto;">
+  <zxing-scanner (scanSuccess)="scanSuccessHandler($event)" [formats]="allowedFormats"></zxing-scanner>
+  <div *ngFor="let result of results">
+    <p>{{ result }}</p>
+  </div>
+</div>
 
 <ng-container *ngIf="pessoa">
   <p>Data: {{chave.mes}}/{{chave.ano}} </p>

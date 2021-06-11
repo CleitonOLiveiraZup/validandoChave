@@ -4,6 +4,7 @@ import {NgPipesModule} from 'ngx-pipes';
 import { CNPJPipe } from 'src/pipes/cnpj.pipe';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 import { AppComponent } from './app.component';
 
@@ -17,7 +18,8 @@ import { AppComponent } from './app.component';
     NgPipesModule,
     HttpClientModule,
     FormsModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    ZXingScannerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
